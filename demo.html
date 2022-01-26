@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+</style>
+<body>
+
+<script>
+
+    /**
+     * from 'javascript: '  copy
+     */
+
+    // javascript:
+    function myFun() {
+        const containerStr = `<div id="BSpeedContainer" style="height: 100vh;
+        z-index: 100000;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        ">
+        <div style="
+    border: 1px #b7b7b7 solid;
+    width: 500px;
+    height: 300px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #494949;
+">
+            <div style="text-align: center;">
+                <h3 style="text-align: center;margin-top:10px;margin-bottom: 20px">B站播放速度</h3>
+                <label>
+                    播放倍速：<span id="playSpeed" style="width: 30px;display: inline-block">1</span>
+                    <input id="speedRange" type="range" min="0" max="5" step="0.2">
+                </label>
+                <div style="margin-top:20px">
+                    <button id="closeBtn" class="btn btn-login login-btn"
+                    style="
+                    border: 1px #b7b7b7;
+                    border-radius: 3px;
+                    padding:3px;
+                    background-color: #249cff;
+                    "
+                    >close</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+        let speedContainer = document.querySelector('#BSpeedContainer');
+        if (!speedContainer) {
+
+            const tmpEle = document.createElement('div');
+            tmpEle.innerHTML = containerStr;
+            document.querySelector('body').appendChild(tmpEle.firstChild);
+
+            const playSpeedEle = document.querySelector('#playSpeed');
+            const speedRange = document.querySelector('#speedRange');
+            const closeBtn = document.querySelector('#closeBtn');
+            const bVideo = document.querySelector('.bilibili-player-video');
+            speedContainer = document.querySelector('#BSpeedContainer');
+            closeBtn.addEventListener('click', () => {
+                speedContainer.remove()
+            }, false);
+            speedRange.addEventListener('change', (e) => {
+                playSpeedEle.innerHTML = e.target.value;
+                bVideo.firstChild.playbackRate = parseFloat(e.target.value);
+            });
+        }
+    }
+
+    myFun();
+</script>
+</body>
+</html>
+
