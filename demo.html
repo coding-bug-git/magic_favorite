@@ -18,10 +18,10 @@
     /**
      * from 'javascript: '  copy
      */
-
     // javascript:
-    function myFun() {
-        const containerStr = `<div id="BSpeedContainer" style="height: 100vh;
+    (
+        () => {
+            const containerStr = `<div id="BSpeedContainer" style="height: 100vh;
         z-index: 100000;
         width: 100%;
         display: flex;
@@ -58,29 +58,28 @@
             </div>
         </div>
     </div>`;
-        let speedContainer = document.querySelector('#BSpeedContainer');
-        if (!speedContainer) {
+            let speedContainer = document.querySelector('#BSpeedContainer');
+            if (!speedContainer) {
 
-            const tmpEle = document.createElement('div');
-            tmpEle.innerHTML = containerStr;
-            document.querySelector('body').appendChild(tmpEle.firstChild);
+                const tmpEle = document.createElement('div');
+                tmpEle.innerHTML = containerStr;
+                document.querySelector('body').appendChild(tmpEle.firstChild);
 
-            const playSpeedEle = document.querySelector('#playSpeed');
-            const speedRange = document.querySelector('#speedRange');
-            const closeBtn = document.querySelector('#closeBtn');
-            const bVideo = document.querySelector('.bilibili-player-video');
-            speedContainer = document.querySelector('#BSpeedContainer');
-            closeBtn.addEventListener('click', () => {
-                speedContainer.remove()
-            }, false);
-            speedRange.addEventListener('change', (e) => {
-                playSpeedEle.innerHTML = e.target.value;
-                bVideo.firstChild.playbackRate = parseFloat(e.target.value);
-            });
+                const playSpeedEle = document.querySelector('#playSpeed');
+                const speedRange = document.querySelector('#speedRange');
+                const closeBtn = document.querySelector('#closeBtn');
+                const bVideo = document.querySelector('.bilibili-player-video');
+                speedContainer = document.querySelector('#BSpeedContainer');
+                closeBtn.addEventListener('click', () => {
+                    speedContainer.remove()
+                }, false);
+                speedRange.addEventListener('change', (e) => {
+                    playSpeedEle.innerHTML = e.target.value;
+                    bVideo.firstChild.playbackRate = parseFloat(e.target.value);
+                });
+            }
         }
-    }
-
-    myFun();
+    )();
 </script>
 </body>
 </html>
